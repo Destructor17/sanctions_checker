@@ -1,0 +1,1 @@
+out.txt: in.txt
