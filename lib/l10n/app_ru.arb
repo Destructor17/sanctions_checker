@@ -1,0 +1,8 @@
+{
+    "hostAddress": "Адрес",
+    "settingsTitle": "Настройки",
+    "searchTitle": "Поиск",
+    "fetchDocumentButton": "Обновить документ",
+    "searchTypeText": "Поиск в тексте",
+    "searchTypeCode": "Поиск по коду"
+}

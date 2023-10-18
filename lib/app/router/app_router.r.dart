@@ -1,0 +1,37 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:sanctions_checker/features/search/presentation/search_page.r.dart';
+import 'package:sanctions_checker/features/settings/presentation/settings_page.r.dart';
+import 'package:sanctions_checker/features/tabs/presentation/tabs_page.r.dart';
+
+part 'app_router.r.gr.dart';
+
+@AutoRouterConfig(replaceInRouteName: 'Page,Route')
+class AppRouter extends _$AppRouter {
+  @override
+  RouteType get defaultRouteType => const RouteType.custom();
+
+  @override
+  List<AutoRoute> get routes => [
+        AutoRoute(
+          path: RoutePaths.tabs,
+          page: TabsRoute.page,
+          children: [
+            AutoRoute(
+              page: SearchRoute.page,
+              path: RoutePaths.search,
+            ),
+            AutoRoute(
+              page: SettingsRoute.page,
+              path: RoutePaths.settings,
+            ),
+          ],
+        ),
+        RedirectRoute(path: '*', redirectTo: '/tabs/search'),
+      ];
+}
+
+class RoutePaths {
+  static const String tabs = '/tabs';
+  static const String settings = 'settings';
+  static const String search = 'search';
+}

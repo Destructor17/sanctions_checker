@@ -1,0 +1,8 @@
+{
+  "hostAddress": "Address",
+  "settingsTitle": "Settings",
+  "searchTitle": "Search",
+  "fetchDocumentButton": "Update document",
+  "searchTypeText": "Text search",
+  "searchTypeCode": "Code search"
+}

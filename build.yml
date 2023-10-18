@@ -1,0 +1,9 @@
+targets:
+  $default:
+    sources:
+      include:
+        - lib/**.f.dart # freezed
+        - lib/**.r.dart # auto_route
+        - lib/**.b.dart # built_value
+        - $package$
+        - lib/$lib$
