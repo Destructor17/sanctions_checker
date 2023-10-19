@@ -15,6 +15,16 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    DocumentRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<DocumentRouteArgs>(
+          orElse: () =>
+              DocumentRouteArgs(path: pathParams.getString('article')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: DocumentPage(path: args.path),
+      );
+    },
     SearchRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -34,6 +44,36 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [DocumentPage]
+class DocumentRoute extends PageRouteInfo<DocumentRouteArgs> {
+  DocumentRoute({
+    required String path,
+    List<PageRouteInfo>? children,
+  }) : super(
+          DocumentRoute.name,
+          args: DocumentRouteArgs(path: path),
+          rawPathParams: {'article': path},
+          initialChildren: children,
+        );
+
+  static const String name = 'DocumentRoute';
+
+  static const PageInfo<DocumentRouteArgs> page =
+      PageInfo<DocumentRouteArgs>(name);
+}
+
+class DocumentRouteArgs {
+  const DocumentRouteArgs({required this.path});
+
+  final String path;
+
+  @override
+  String toString() {
+    return 'DocumentRouteArgs{path: $path}';
+  }
 }
 
 /// generated route for

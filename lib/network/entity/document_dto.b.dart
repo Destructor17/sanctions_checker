@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:sanctions_checker/network/entity/article_dto.b.dart';
 import 'package:sanctions_checker/network/entity/document_list_dto.b.dart';
 import 'package:sanctions_checker/network/entity/serializers.b.dart';
 
@@ -16,6 +17,7 @@ abstract class DocumentDTO implements Built<DocumentDTO, DocumentDTOBuilder> {
   String get title;
   String get source;
 
+  BuiltMap<String, ArticleDTO> get sections;
   BuiltMap<String, DocumentListDTO> get lists;
 
   static Serializer<DocumentDTO> get serializer => _$documentDTOSerializer;

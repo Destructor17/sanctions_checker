@@ -2,7 +2,9 @@
   "hostAddress": "Address",
   "settingsTitle": "Settings",
   "searchTitle": "Search",
+  "documentTitle": "Document",
   "fetchDocumentButton": "Update document",
   "searchTypeText": "Text search",
-  "searchTypeCode": "Code search"
+  "searchTypeCode": "Code search",
+  "noSearchResult": "Nothing found"
 }

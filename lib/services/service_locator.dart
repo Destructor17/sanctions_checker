@@ -3,6 +3,7 @@ import 'package:sanctions_checker/services/dio_provider.dart';
 import 'package:sanctions_checker/services/document_storage_service.dart';
 import 'package:sanctions_checker/services/endpoint_service.dart';
 import 'package:sanctions_checker/services/netowrk_service.dart';
+import 'package:sanctions_checker/services/search_service.dart';
 import 'package:sanctions_checker/services/storage_service.dart';
 
 final GetIt sl = GetIt.instance;
@@ -25,6 +26,10 @@ Future<void> slInit() async {
     ..registerFactory<DocumentStorageService>(
       () =>
           DocumentStorageServiceImpl(storageService: sl.get<StorageService>()),
+    )
+    ..registerFactory<SearchService>(
+      () => SearchServiceImpl(
+          documentStorageService: sl.get<DocumentStorageService>()),
     );
 
   _initRepositories();

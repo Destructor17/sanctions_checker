@@ -7,13 +7,6 @@ import 'package:sanctions_checker/services/service_locator.dart';
 import 'package:sanctions_checker/ui_kit/ui_kit.dart';
 
 void main() {
-  FlutterError.onError = (details) {
-    Zone.current.handleUncaughtError(
-      details.exception,
-      details.stack ?? StackTrace.fromString(''),
-    );
-  };
-
   runZonedGuarded<void>(
     _run,
     (error, stackTrace) {},

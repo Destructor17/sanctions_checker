@@ -49,7 +49,7 @@ class SettingsViewState extends State<SettingsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FocusDropper(
-        child: AppLoader(
+        child: AppOverlayLoader(
           child: BlocBuilder<DocumentFetchBloc, DocumentFetchState>(
             bloc: documentFetchBloc,
             builder: (context, documentFetchState) {

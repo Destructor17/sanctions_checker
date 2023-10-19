@@ -19,6 +19,13 @@ class TabsPage extends StatelessWidget {
         ),
       ),
       (
+        DocumentRoute(path: ''),
+        BottomNavigationBarItem(
+          label: context.loc.documentTitle,
+          icon: const Icon(Icons.file_open_outlined),
+        ),
+      ),
+      (
         const SettingsRoute(),
         BottomNavigationBarItem(
           label: context.loc.settingsTitle,

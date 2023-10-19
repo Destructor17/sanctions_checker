@@ -2,7 +2,9 @@
     "hostAddress": "Адрес",
     "settingsTitle": "Настройки",
     "searchTitle": "Поиск",
+    "documentTitle": "Документ",
     "fetchDocumentButton": "Обновить документ",
     "searchTypeText": "Поиск в тексте",
-    "searchTypeCode": "Поиск по коду"
+    "searchTypeCode": "Поиск по коду",
+    "noSearchResult": "Ничего не найдено"
 }

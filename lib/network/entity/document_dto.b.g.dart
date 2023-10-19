@@ -24,6 +24,10 @@ class _$DocumentDTOSerializer implements StructuredSerializer<DocumentDTO> {
       'source',
       serializers.serialize(object.source,
           specifiedType: const FullType(String)),
+      'sections',
+      serializers.serialize(object.sections,
+          specifiedType: const FullType(BuiltMap,
+              const [const FullType(String), const FullType(ArticleDTO)])),
       'lists',
       serializers.serialize(object.lists,
           specifiedType: const FullType(BuiltMap,
@@ -52,6 +56,13 @@ class _$DocumentDTOSerializer implements StructuredSerializer<DocumentDTO> {
           result.source = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'sections':
+          result.sections.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltMap, const [
+                const FullType(String),
+                const FullType(ArticleDTO)
+              ]))!);
+          break;
         case 'lists':
           result.lists.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltMap, const [
@@ -72,16 +83,22 @@ class _$DocumentDTO extends DocumentDTO {
   @override
   final String source;
   @override
+  final BuiltMap<String, ArticleDTO> sections;
+  @override
   final BuiltMap<String, DocumentListDTO> lists;
 
   factory _$DocumentDTO([void Function(DocumentDTOBuilder)? updates]) =>
       (new DocumentDTOBuilder()..update(updates))._build();
 
   _$DocumentDTO._(
-      {required this.title, required this.source, required this.lists})
+      {required this.title,
+      required this.source,
+      required this.sections,
+      required this.lists})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(title, r'DocumentDTO', 'title');
     BuiltValueNullFieldError.checkNotNull(source, r'DocumentDTO', 'source');
+    BuiltValueNullFieldError.checkNotNull(sections, r'DocumentDTO', 'sections');
     BuiltValueNullFieldError.checkNotNull(lists, r'DocumentDTO', 'lists');
   }
 
@@ -98,6 +115,7 @@ class _$DocumentDTO extends DocumentDTO {
     return other is DocumentDTO &&
         title == other.title &&
         source == other.source &&
+        sections == other.sections &&
         lists == other.lists;
   }
 
@@ -106,6 +124,7 @@ class _$DocumentDTO extends DocumentDTO {
     var _$hash = 0;
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, source.hashCode);
+    _$hash = $jc(_$hash, sections.hashCode);
     _$hash = $jc(_$hash, lists.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -116,6 +135,7 @@ class _$DocumentDTO extends DocumentDTO {
     return (newBuiltValueToStringHelper(r'DocumentDTO')
           ..add('title', title)
           ..add('source', source)
+          ..add('sections', sections)
           ..add('lists', lists))
         .toString();
   }
@@ -132,6 +152,12 @@ class DocumentDTOBuilder implements Builder<DocumentDTO, DocumentDTOBuilder> {
   String? get source => _$this._source;
   set source(String? source) => _$this._source = source;
 
+  MapBuilder<String, ArticleDTO>? _sections;
+  MapBuilder<String, ArticleDTO> get sections =>
+      _$this._sections ??= new MapBuilder<String, ArticleDTO>();
+  set sections(MapBuilder<String, ArticleDTO>? sections) =>
+      _$this._sections = sections;
+
   MapBuilder<String, DocumentListDTO>? _lists;
   MapBuilder<String, DocumentListDTO> get lists =>
       _$this._lists ??= new MapBuilder<String, DocumentListDTO>();
@@ -145,6 +171,7 @@ class DocumentDTOBuilder implements Builder<DocumentDTO, DocumentDTOBuilder> {
     if ($v != null) {
       _title = $v.title;
       _source = $v.source;
+      _sections = $v.sections.toBuilder();
       _lists = $v.lists.toBuilder();
       _$v = null;
     }
@@ -174,10 +201,13 @@ class DocumentDTOBuilder implements Builder<DocumentDTO, DocumentDTOBuilder> {
                   title, r'DocumentDTO', 'title'),
               source: BuiltValueNullFieldError.checkNotNull(
                   source, r'DocumentDTO', 'source'),
+              sections: sections.build(),
               lists: lists.build());
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'sections';
+        sections.build();
         _$failedField = 'lists';
         lists.build();
       } catch (e) {

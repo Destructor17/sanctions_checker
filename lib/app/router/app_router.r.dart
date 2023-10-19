@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:sanctions_checker/features/document/presentation/document_page.r.dart';
 import 'package:sanctions_checker/features/search/presentation/search_page.r.dart';
 import 'package:sanctions_checker/features/settings/presentation/settings_page.r.dart';
 import 'package:sanctions_checker/features/tabs/presentation/tabs_page.r.dart';
@@ -21,6 +22,10 @@ class AppRouter extends _$AppRouter {
               path: RoutePaths.search,
             ),
             AutoRoute(
+              page: DocumentRoute.page,
+              path: '${RoutePaths.document}/:article',
+            ),
+            AutoRoute(
               page: SettingsRoute.page,
               path: RoutePaths.settings,
             ),
@@ -34,4 +39,5 @@ class RoutePaths {
   static const String tabs = '/tabs';
   static const String settings = 'settings';
   static const String search = 'search';
+  static const String document = 'document';
 }

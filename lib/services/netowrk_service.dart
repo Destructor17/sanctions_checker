@@ -27,9 +27,11 @@ final class NetworkServiceImpl implements NetworkService {
         options: Options(responseType: ResponseType.plain),
       );
       if (kDebugMode) {
-        await Future.delayed(Duration(
-          milliseconds: (Random().nextDouble() * 1000).ceil(),
-        ));
+        await Future.delayed(
+          Duration(
+            milliseconds: (Random().nextDouble() * 1000).ceil(),
+          ),
+        );
       }
 
       final data = response.data;

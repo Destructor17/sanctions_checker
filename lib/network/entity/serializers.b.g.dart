@@ -7,6 +7,7 @@ part of 'serializers.b.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
+      ..add(ArticleDTO.serializer)
       ..add(DocumentDTO.serializer)
       ..add(DocumentListDTO.serializer)
       ..addBuilderFactory(
@@ -20,6 +21,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltMap,
               const [const FullType(String), const FullType(DocumentListDTO)]),
           () => new MapBuilder<String, DocumentListDTO>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap,
+              const [const FullType(String), const FullType(ArticleDTO)]),
+          () => new MapBuilder<String, ArticleDTO>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap,
+              const [const FullType(String), const FullType(ArticleDTO)]),
+          () => new MapBuilder<String, ArticleDTO>())
       ..addBuilderFactory(
           const FullType(BuiltMap,
               const [const FullType(String), const FullType(DocumentListDTO)]),
