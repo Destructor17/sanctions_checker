@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sanctions_checker/features/search/domain/search_result.f.dart';
-import 'package:sanctions_checker/services/search_service.dart';
+import 'package:sanctions_checker/features/search/domain/models/search_result.f.dart';
+import 'package:sanctions_checker/features/search/domain/services/search_service.dart';
 import 'package:sanctions_checker/services/service_locator.dart';
 
 part 'search_bloc.f.freezed.dart';

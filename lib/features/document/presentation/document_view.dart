@@ -2,120 +2,98 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sanctions_checker/app/router/app_router.r.dart';
-import 'package:sanctions_checker/features/article/presentation/article_body.dart';
-import 'package:sanctions_checker/features/article/presentation/article_footer.dart';
-import 'package:sanctions_checker/features/article/presentation/article_header.dart';
+import 'package:sanctions_checker/features/article/presentation/article_reference_view.dart';
 import 'package:sanctions_checker/features/document/presentation/bloc/document_bloc.f.dart';
-import 'package:sanctions_checker/network/entity/article_dto.b.dart';
+import 'package:sanctions_checker/l10n/context_extension.dart';
+import 'package:sanctions_checker/ui_kit/theme/app_theme.dart';
 import 'package:sanctions_checker/ui_kit/ui_kit.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class DocumentView extends StatefulWidget {
   const DocumentView({
-    required this.expandedPath,
+    required this.path,
     super.key,
   });
 
-  final List<String> expandedPath;
+  final List<String> path;
 
   @override
   State<StatefulWidget> createState() => DocumentViewState();
 }
 
 class DocumentViewState extends State<DocumentView> {
-  final bloc = DocumentBloc();
-  final itemScrollController = ItemScrollController();
+  late final bloc = DocumentBloc(path: widget.path);
 
-  int? latestExpandedWidgetIndex;
+  bool canNavigateToParent() => widget.path.isNotEmpty;
 
-  String? memorizedExpandedPath;
+  void navigateToPath(List<String> path) {
+    AutoRouter.of(context).push(
+      DocumentRoute(
+        path: path.join('/'),
+      ),
+    );
+  }
 
-  List<Widget> buildArticles(
-    List<Widget> previousWidgets,
-    Map<String, ArticleDTO>? articles,
-    int depth,
-    List<String>? expandenPath,
-    List<String> path,
-  ) {
-    var result = previousWidgets;
-    final sortedKeys = (articles?.keys ?? []).toList()..sort();
-    for (final pathPart in sortedKeys) {
-      final section = articles?[pathPart];
-      if (section == null) {
-        continue;
-      }
-      final newExpandenPath;
-      if (expandenPath == null ||
-          expandenPath.isEmpty ||
-          expandenPath.first != pathPart) {
-        newExpandenPath = null;
-      } else {
-        newExpandenPath = expandenPath.skip(1).toList();
-        if (expandenPath.length == 1) {
-          latestExpandedWidgetIndex = result.length;
-        }
-      }
-      result.add(ArticleHeader(
-        article: section,
-        depth: depth + 1,
-        onTap: () {
-          final String newPath;
-          if (newExpandenPath == null) {
-            newPath = (path + [pathPart]).join('/');
-          } else {
-            newPath = path.join('/');
-          }
-          AutoRouter.of(context).navigate(DocumentRoute(path: newPath));
-          memorizedExpandedPath = newPath;
-        },
-      ));
-      if (newExpandenPath != null) {
-        result = buildArticles(
-          result..add(ArticleBody(article: section)),
-          section.sections?.toMap(),
-          depth + 1,
-          newExpandenPath,
-          path + [pathPart],
-        )..add(const ArticleFooter());
-      }
+  void navigateToParent(BuildContext context) {
+    if (canNavigateToParent()) {
+      navigateToPath(widget.path.sublist(0, widget.path.length - 1));
     }
-    return result;
   }
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (latestExpandedWidgetIndex != null &&
-          memorizedExpandedPath != widget.expandedPath.join('/')) {
-        itemScrollController.jumpTo(index: latestExpandedWidgetIndex!);
-        memorizedExpandedPath = widget.expandedPath.join('/');
-      }
-    });
-    return Scaffold(
-      body: BlocBuilder<DocumentBloc, DocumentState>(
-        bloc: bloc,
-        builder: (context, state) {
-          if (state is DocumentStateResult) {
-            final widgets = buildArticles(
-              [],
-              state.document.sections.toMap(),
-              0,
-              widget.expandedPath,
-              [],
-            );
-            return SafeArea(
-              child: ScrollablePositionedList.builder(
-                itemScrollController: itemScrollController,
-                itemCount: widgets.length,
-                itemBuilder: (context, index) => widgets[index],
+    return BlocBuilder<DocumentBloc, DocumentState>(
+      bloc: bloc,
+      builder: (context, state) {
+        final Widget body;
+        final String title;
+        if (state is DocumentStateResult) {
+          body = SafeArea(
+            child: ListView(
+              children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.all(context.sizes.margin),
+                      child: Text(
+                        state.article.body,
+                        style: context.typography.bodyMedium.copyWith(
+                          color: context.colors.neutral.neutral,
+                        ),
+                      ),
+                    ),
+                  ] +
+                  state.article.sections.map(
+                    (section) {
+                      return ArticleReferenceView(
+                        articleReference: section,
+                        onTap: () {
+                          navigateToPath(section.path);
+                        },
+                      );
+                    },
+                  ).toList(),
+            ),
+          );
+          title = state.article.title;
+        } else if (state is DocumentStateError) {
+          body = Center(child: Text(context.loc.articleLoadingError));
+          title = '';
+        } else {
+          body = const Center(child: AppLoader());
+          title = '';
+        }
+
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              title,
+              style: context.typography.bodyMedium.copyWith(
+                color: context.colors.neutral.neutral,
               ),
-            );
-          } else if (state is DocumentStateError) {
-            return const Center(child: Text("error"));
-          }
-          return const Center(child: AppLoader());
-        },
-      ),
+            ),
+            backgroundColor: context.colors.background.onPrimary,
+          ),
+          body: body,
+        );
+      },
     );
   }
 }

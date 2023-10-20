@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sanctions_checker/features/search/domain/services/search_service.dart';
 import 'package:sanctions_checker/features/search/presentation/bloc/search_bloc.f.dart';
-import 'package:sanctions_checker/features/search_result/presentation/search_result_view.dart';
+import 'package:sanctions_checker/features/search/presentation/search_result_view.dart';
 import 'package:sanctions_checker/l10n/context_extension.dart';
-import 'package:sanctions_checker/services/search_service.dart';
 import 'package:sanctions_checker/ui_kit/theme/app_theme.dart';
 import 'package:sanctions_checker/ui_kit/ui_kit.dart';
 
@@ -23,6 +23,7 @@ class SearchViewState extends State<SearchView> {
   @override
   void initState() {
     controller.addListener(search);
+    bloc.add(SearchEvent.requestedSearch(controller.text, searchType));
     super.initState();
   }
 

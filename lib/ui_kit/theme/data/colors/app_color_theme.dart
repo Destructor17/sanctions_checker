@@ -14,7 +14,7 @@ class AppColorScheme {
   });
 
   factory AppColorScheme.light() => AppColorScheme(
-        primary: PrimaryColorsData.regular(),
+        primary: PrimaryColorsData.light(),
         background: BackgroundColorsData.light(),
         neutral: NeutralColorsData.light(),
         error: ErrorColorsData.regular(),
@@ -22,7 +22,7 @@ class AppColorScheme {
       );
 
   factory AppColorScheme.dark() => AppColorScheme(
-        primary: PrimaryColorsData.regular(),
+        primary: PrimaryColorsData.dark(),
         background: BackgroundColorsData.dark(),
         neutral: NeutralColorsData.dark(),
         error: ErrorColorsData.regular(),

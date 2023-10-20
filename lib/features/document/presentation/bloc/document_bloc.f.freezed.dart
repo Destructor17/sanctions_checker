@@ -173,21 +173,21 @@ mixin _$DocumentState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(DocumentDTO document) result,
+    required TResult Function(Article article) result,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(DocumentDTO document)? result,
+    TResult? Function(Article article)? result,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(DocumentDTO document)? result,
+    TResult Function(Article article)? result,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -274,7 +274,7 @@ class _$DocumentStateLoadingImpl implements DocumentStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(DocumentDTO document) result,
+    required TResult Function(Article article) result,
   }) {
     return loading();
   }
@@ -284,7 +284,7 @@ class _$DocumentStateLoadingImpl implements DocumentStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(DocumentDTO document)? result,
+    TResult? Function(Article article)? result,
   }) {
     return loading?.call();
   }
@@ -294,7 +294,7 @@ class _$DocumentStateLoadingImpl implements DocumentStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(DocumentDTO document)? result,
+    TResult Function(Article article)? result,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -382,7 +382,7 @@ class _$DocumentStateErrorImpl implements DocumentStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(DocumentDTO document) result,
+    required TResult Function(Article article) result,
   }) {
     return error();
   }
@@ -392,7 +392,7 @@ class _$DocumentStateErrorImpl implements DocumentStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(DocumentDTO document)? result,
+    TResult? Function(Article article)? result,
   }) {
     return error?.call();
   }
@@ -402,7 +402,7 @@ class _$DocumentStateErrorImpl implements DocumentStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(DocumentDTO document)? result,
+    TResult Function(Article article)? result,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -456,7 +456,9 @@ abstract class _$$DocumentStateResultImplCopyWith<$Res> {
           $Res Function(_$DocumentStateResultImpl) then) =
       __$$DocumentStateResultImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({DocumentDTO document});
+  $Res call({Article article});
+
+  $ArticleCopyWith<$Res> get article;
 }
 
 /// @nodoc
@@ -470,28 +472,36 @@ class __$$DocumentStateResultImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? document = null,
+    Object? article = null,
   }) {
     return _then(_$DocumentStateResultImpl(
-      document: null == document
-          ? _value.document
-          : document // ignore: cast_nullable_to_non_nullable
-              as DocumentDTO,
+      article: null == article
+          ? _value.article
+          : article // ignore: cast_nullable_to_non_nullable
+              as Article,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ArticleCopyWith<$Res> get article {
+    return $ArticleCopyWith<$Res>(_value.article, (value) {
+      return _then(_value.copyWith(article: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$DocumentStateResultImpl implements DocumentStateResult {
-  const _$DocumentStateResultImpl({required this.document});
+  const _$DocumentStateResultImpl({required this.article});
 
   @override
-  final DocumentDTO document;
+  final Article article;
 
   @override
   String toString() {
-    return 'DocumentState.result(document: $document)';
+    return 'DocumentState.result(article: $article)';
   }
 
   @override
@@ -499,12 +509,11 @@ class _$DocumentStateResultImpl implements DocumentStateResult {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DocumentStateResultImpl &&
-            (identical(other.document, document) ||
-                other.document == document));
+            (identical(other.article, article) || other.article == article));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, document);
+  int get hashCode => Object.hash(runtimeType, article);
 
   @JsonKey(ignore: true)
   @override
@@ -518,9 +527,9 @@ class _$DocumentStateResultImpl implements DocumentStateResult {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(DocumentDTO document) result,
+    required TResult Function(Article article) result,
   }) {
-    return result(document);
+    return result(article);
   }
 
   @override
@@ -528,9 +537,9 @@ class _$DocumentStateResultImpl implements DocumentStateResult {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(DocumentDTO document)? result,
+    TResult? Function(Article article)? result,
   }) {
-    return result?.call(document);
+    return result?.call(article);
   }
 
   @override
@@ -538,11 +547,11 @@ class _$DocumentStateResultImpl implements DocumentStateResult {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(DocumentDTO document)? result,
+    TResult Function(Article article)? result,
     required TResult orElse(),
   }) {
     if (result != null) {
-      return result(document);
+      return result(article);
     }
     return orElse();
   }
@@ -583,10 +592,10 @@ class _$DocumentStateResultImpl implements DocumentStateResult {
 }
 
 abstract class DocumentStateResult implements DocumentState {
-  const factory DocumentStateResult({required final DocumentDTO document}) =
+  const factory DocumentStateResult({required final Article article}) =
       _$DocumentStateResultImpl;
 
-  DocumentDTO get document;
+  Article get article;
   @JsonKey(ignore: true)
   _$$DocumentStateResultImplCopyWith<_$DocumentStateResultImpl> get copyWith =>
       throw _privateConstructorUsedError;

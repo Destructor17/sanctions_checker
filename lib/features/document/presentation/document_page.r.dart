@@ -13,7 +13,7 @@ class DocumentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DocumentView(
-      expandedPath: path.split('/'),
+      path: path.isEmpty ? [] : path.split('/'),
     );
   }
 }

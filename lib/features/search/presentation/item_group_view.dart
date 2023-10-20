@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sanctions_checker/features/search/domain/search_result_item_group.f.dart';
-import 'package:sanctions_checker/features/search_result/presentation/article_reference_view.dart';
-import 'package:sanctions_checker/features/search_result/presentation/item_view.dart';
+import 'package:sanctions_checker/features/article/presentation/article_reference_view.dart';
+import 'package:sanctions_checker/features/search/domain/models/search_result_item_group.f.dart';
+import 'package:sanctions_checker/features/search/presentation/item_view.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class ItemGroupView extends StatelessWidget {

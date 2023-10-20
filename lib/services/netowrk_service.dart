@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import 'package:flutter/foundation.dart';
+import 'package:sanctions_checker/features/settings/domain/services/endpoint_service.dart';
 import 'package:sanctions_checker/network/entity/document_dto.b.dart';
 import 'package:sanctions_checker/services/dio_provider.dart';
-import 'package:sanctions_checker/services/endpoint_service.dart';
 
 abstract interface class NetworkService {
   Future<Either<void, DocumentDTO>> get();

@@ -25,7 +25,7 @@ class _AdaptiveThemeState extends State<AdaptiveTheme> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    theme = AppThemeData.dark();
+    theme = AppThemeData.light();
   }
 
   @override

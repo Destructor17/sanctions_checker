@@ -1,15 +1,13 @@
-import 'package:built_collection/built_collection.dart';
 import 'package:either_dart/either.dart';
 import 'package:flutter/foundation.dart';
-import 'package:sanctions_checker/features/search/domain/search_result.f.dart';
-import 'package:sanctions_checker/features/search/domain/search_result_article.f.dart';
-import 'package:sanctions_checker/features/search/domain/search_result_article_reference.f.dart';
-import 'package:sanctions_checker/features/search/domain/search_result_item.f.dart';
-import 'package:sanctions_checker/features/search/domain/search_result_item_group.f.dart';
-import 'package:sanctions_checker/network/entity/article_dto.b.dart';
+import 'package:sanctions_checker/features/article/domain/models/article_reference.f.dart';
+import 'package:sanctions_checker/features/article/domain/services/article_service.dart';
+import 'package:sanctions_checker/features/document/domain/services/document_storage_service.dart';
+import 'package:sanctions_checker/features/search/domain/models/search_result.f.dart';
+import 'package:sanctions_checker/features/search/domain/models/search_result_item.f.dart';
+import 'package:sanctions_checker/features/search/domain/models/search_result_item_group.f.dart';
 import 'package:sanctions_checker/network/entity/document_dto.b.dart';
 import 'package:sanctions_checker/network/entity/document_list_dto.b.dart';
-import 'package:sanctions_checker/services/document_storage_service.dart';
 
 enum DocumentSearchType {
   fullText,
@@ -37,8 +35,8 @@ class ListSearchResult {
   final List<String> refs;
 }
 
-class Searcher {
-  Searcher({
+class ItemSearcher {
+  ItemSearcher({
     required this.text,
     required this.searchType,
     required this.document,
@@ -53,7 +51,20 @@ class Searcher {
   ) {
     final matchingItems = <ListSearchResult>[];
     list.body?.forEach((key, value) {
-      if (key.contains(text)) {
+      final bool isMatched;
+      switch (searchType) {
+        case DocumentSearchType.key:
+          isMatched = key.contains(text);
+          break;
+
+        case DocumentSearchType.fullText:
+          isMatched = value.toLowerCase().contains(text.toLowerCase());
+          break;
+
+        default:
+          isMatched = false;
+      }
+      if (isMatched) {
         matchingItems.add(ListSearchResult(
             key: key, path: path, refs: list.refs.toList(), body: value));
       }
@@ -62,27 +73,6 @@ class Searcher {
       matchingItems.addAll(traverseLists(list, path + [key]));
     });
     return matchingItems;
-  }
-
-  SearchResultArticle? findArticle(List<String> path) {
-    SearchResultArticle? result;
-    BuiltMap<String, ArticleDTO>? articles = document.sections;
-    for (final pathPart in path) {
-      if (articles == null) {
-        return null;
-      }
-      final article = articles[pathPart];
-      if (article == null) {
-        return null;
-      }
-      articles = article.sections;
-      result = SearchResultArticle(
-        parent: result,
-        title: article.title,
-        pathPart: pathPart,
-      );
-    }
-    return result;
   }
 
   List<SearchResultItemGroup> groupItems(List<ListSearchResult> items) {
@@ -103,16 +93,17 @@ class Searcher {
                 .split(refsDelimiter)
                 .map((ref) {
                   final path = ref.split('/');
-                  final article = findArticle(path);
-                  if (article == null) {
+                  final articleResult =
+                      ArticleSearcher(document: document).findArticle(path);
+                  if (articleResult.isLeft) {
                     return null;
                   }
-                  return SearchResultArticleReference(
+                  return ArticleReference(
                     path: path,
-                    title: article.title,
+                    title: articleResult.right.title,
                   );
                 })
-                .whereType<SearchResultArticleReference>()
+                .whereType<ArticleReference>()
                 .toList(),
             items: grouped[refKey]!
                 .map(
@@ -154,7 +145,7 @@ class SearchServiceImpl implements SearchService {
     }
     final searchResult = await compute(
       (searcher) async => searcher.search(),
-      Searcher(
+      ItemSearcher(
         document: result.right,
         text: text,
         searchType: searchType,

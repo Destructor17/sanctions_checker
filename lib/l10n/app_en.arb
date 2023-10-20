@@ -6,5 +6,6 @@
   "fetchDocumentButton": "Update document",
   "searchTypeText": "Text search",
   "searchTypeCode": "Code search",
-  "noSearchResult": "Nothing found"
+  "noSearchResult": "Nothing found",
+  "articleLoadingError": "An error occurd while loading an article"
 }

@@ -1,4 +1,4 @@
-import 'package:sanctions_checker/services/storage_service.dart';
+import 'package:sanctions_checker/features/settings/domain/services/storage_service.dart';
 
 abstract interface class EndpointService {
   Future<String> getEndpoint();

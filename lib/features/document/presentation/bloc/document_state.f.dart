@@ -4,6 +4,7 @@ part of 'document_bloc.f.dart';
 sealed class DocumentState with _$DocumentState {
   const factory DocumentState.loading() = DocumentStateLoading;
   const factory DocumentState.error() = DocumentStateError;
-  const factory DocumentState.result({required DocumentDTO document}) =
-      DocumentStateResult;
+  const factory DocumentState.result({
+    required Article article,
+  }) = DocumentStateResult;
 }

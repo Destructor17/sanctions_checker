@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SearchResultItemGroup {
-  List<SearchResultArticleReference> get articleReferences =>
+  List<ArticleReference> get articleReferences =>
       throw _privateConstructorUsedError;
   List<SearchResultItem> get items => throw _privateConstructorUsedError;
 
@@ -32,8 +32,7 @@ abstract class $SearchResultItemGroupCopyWith<$Res> {
       _$SearchResultItemGroupCopyWithImpl<$Res, SearchResultItemGroup>;
   @useResult
   $Res call(
-      {List<SearchResultArticleReference> articleReferences,
-      List<SearchResultItem> items});
+      {List<ArticleReference> articleReferences, List<SearchResultItem> items});
 }
 
 /// @nodoc
@@ -57,7 +56,7 @@ class _$SearchResultItemGroupCopyWithImpl<$Res,
       articleReferences: null == articleReferences
           ? _value.articleReferences
           : articleReferences // ignore: cast_nullable_to_non_nullable
-              as List<SearchResultArticleReference>,
+              as List<ArticleReference>,
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
@@ -76,8 +75,7 @@ abstract class _$$SearchResultItemGroupImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<SearchResultArticleReference> articleReferences,
-      List<SearchResultItem> items});
+      {List<ArticleReference> articleReferences, List<SearchResultItem> items});
 }
 
 /// @nodoc
@@ -99,7 +97,7 @@ class __$$SearchResultItemGroupImplCopyWithImpl<$Res>
       articleReferences: null == articleReferences
           ? _value._articleReferences
           : articleReferences // ignore: cast_nullable_to_non_nullable
-              as List<SearchResultArticleReference>,
+              as List<ArticleReference>,
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
@@ -112,14 +110,14 @@ class __$$SearchResultItemGroupImplCopyWithImpl<$Res>
 
 class _$SearchResultItemGroupImpl implements _SearchResultItemGroup {
   const _$SearchResultItemGroupImpl(
-      {required final List<SearchResultArticleReference> articleReferences,
+      {required final List<ArticleReference> articleReferences,
       required final List<SearchResultItem> items})
       : _articleReferences = articleReferences,
         _items = items;
 
-  final List<SearchResultArticleReference> _articleReferences;
+  final List<ArticleReference> _articleReferences;
   @override
-  List<SearchResultArticleReference> get articleReferences {
+  List<ArticleReference> get articleReferences {
     if (_articleReferences is EqualUnmodifiableListView)
       return _articleReferences;
     // ignore: implicit_dynamic_type
@@ -165,12 +163,12 @@ class _$SearchResultItemGroupImpl implements _SearchResultItemGroup {
 
 abstract class _SearchResultItemGroup implements SearchResultItemGroup {
   const factory _SearchResultItemGroup(
-          {required final List<SearchResultArticleReference> articleReferences,
+          {required final List<ArticleReference> articleReferences,
           required final List<SearchResultItem> items}) =
       _$SearchResultItemGroupImpl;
 
   @override
-  List<SearchResultArticleReference> get articleReferences;
+  List<ArticleReference> get articleReferences;
   @override
   List<SearchResultItem> get items;
   @override

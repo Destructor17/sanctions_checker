@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sanctions_checker/services/document_storage_service.dart';
+import 'package:sanctions_checker/features/document/domain/services/document_storage_service.dart';
 import 'package:sanctions_checker/services/netowrk_service.dart';
 import 'package:sanctions_checker/services/service_locator.dart';
 

@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:sanctions_checker/services/document_storage_service.dart';
-import 'package:sanctions_checker/services/endpoint_service.dart';
+import 'package:sanctions_checker/features/document/domain/services/document_storage_service.dart';
+import 'package:sanctions_checker/features/settings/domain/services/endpoint_service.dart';
 import 'package:sanctions_checker/services/netowrk_service.dart';
 import 'package:sanctions_checker/services/service_locator.dart';
 

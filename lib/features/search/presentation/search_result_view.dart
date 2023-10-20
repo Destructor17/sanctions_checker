@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sanctions_checker/features/search/domain/search_result.f.dart';
-import 'package:sanctions_checker/features/search_result/presentation/item_group_view.dart';
+import 'package:sanctions_checker/features/search/domain/models/search_result.f.dart';
+import 'package:sanctions_checker/features/search/presentation/item_group_view.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class SearchResultView extends StatelessWidget {

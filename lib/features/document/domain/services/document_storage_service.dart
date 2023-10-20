@@ -1,6 +1,6 @@
 import 'package:either_dart/either.dart';
+import 'package:sanctions_checker/features/settings/domain/services/storage_service.dart';
 import 'package:sanctions_checker/network/entity/document_dto.b.dart';
-import 'package:sanctions_checker/services/storage_service.dart';
 
 abstract interface class DocumentStorageService {
   Future<void> saveDocument(DocumentDTO document);
