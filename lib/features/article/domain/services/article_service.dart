@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:built_collection/built_collection.dart';
 import 'package:either_dart/either.dart';
 import 'package:sanctions_checker/features/article/domain/models/article.f.dart';
@@ -13,6 +15,9 @@ abstract interface class ArticleService {
 class ArticleSearcher {
   ArticleSearcher({required this.document});
   final DocumentDTO document;
+
+  String mapKey(String key, int maxKeyLength) =>
+      ('0' * (maxKeyLength - key.length)) + key;
 
   Either<void, Article> findArticle(List<String> path) {
     BuiltMap<String, ArticleDTO>? sections = document.sections;
@@ -30,7 +35,15 @@ class ArticleSearcher {
     }
     final resultSections = <ArticleReference>[];
     if (sections != null) {
-      for (final key in sections.keys) {
+      final maxKeyLength = sections.keys.fold(
+        0,
+        (value, key) => max(value, key.length),
+      );
+      final sortedKeys = sections.keys.toList()
+        ..sort(
+          (a, b) => mapKey(a, maxKeyLength).compareTo(mapKey(b, maxKeyLength)),
+        );
+      for (final key in sortedKeys) {
         resultSections.add(ArticleReference(
           path: path + [key],
           title: sections[key]!.title,

@@ -1,19 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:sanctions_checker/app/router/app_router.r.dart';
 import 'package:sanctions_checker/services/service_locator.dart';
 import 'package:ui_kit/ui_kit.dart';
 
-void main() {
-  runZonedGuarded<void>(
-    _run,
-    (error, stackTrace) {},
-  );
-}
-
-Future<void> _run() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await slInit();
