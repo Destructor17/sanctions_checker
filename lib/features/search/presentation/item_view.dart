@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sanctions_checker/features/search/domain/models/search_result_item.f.dart';
-import 'package:sanctions_checker/ui_kit/theme/app_theme.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 class ItemView extends StatelessWidget {
   const ItemView({

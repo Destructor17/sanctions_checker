@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sanctions_checker/ui_kit/theme/data/app_text_styles.dart';
+import 'package:ui_kit/src/theme/data/app_text_styles.dart';
 
 class AppTypography {
   const AppTypography({

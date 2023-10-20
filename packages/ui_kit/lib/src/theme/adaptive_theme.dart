@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sanctions_checker/ui_kit/theme/app_theme.dart';
-import 'package:sanctions_checker/ui_kit/theme/data/app_theme_data.dart';
+import 'package:ui_kit/src/theme/app_theme.dart';
+import 'package:ui_kit/src/theme/data/app_theme_data.dart';
 
 typedef AdaptiveThemeBuilder = Widget Function(
   BuildContext context,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sanctions_checker/ui_kit/theme/data/app_sizes_data.dart';
-import 'package:sanctions_checker/ui_kit/theme/data/app_typography.dart';
-import 'package:sanctions_checker/ui_kit/theme/data/colors/app_color_theme.dart';
-import 'package:sanctions_checker/ui_kit/theme/material_theme.dart';
+import 'package:ui_kit/src/theme/data/app_sizes_data.dart';
+import 'package:ui_kit/src/theme/data/app_typography.dart';
+import 'package:ui_kit/src/theme/data/colors/app_color_theme.dart';
+import 'package:ui_kit/src/theme/material_theme.dart';
 
 class AppThemeData {
   const AppThemeData({

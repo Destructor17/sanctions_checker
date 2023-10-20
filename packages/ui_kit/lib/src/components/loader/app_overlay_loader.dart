@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sanctions_checker/ui_kit/components/loader/hacked_stack.dart';
-import 'package:sanctions_checker/ui_kit/theme/app_theme.dart';
-import 'package:sanctions_checker/ui_kit/ui_kit.dart';
+import 'package:ui_kit/src/components/loader/app_loader.dart';
+import 'package:ui_kit/src/components/loader/hacked_stack.dart';
+import 'package:ui_kit/src/theme/app_theme.dart';
 
 class AppOverlayLoader extends StatefulWidget {
   const AppOverlayLoader({
@@ -92,7 +92,7 @@ class AppLoaderHandle {
   }
 }
 
-extension AppThemeContext on BuildContext {
+extension AppLoaderHandleContext on BuildContext {
   AppLoaderHandle get loader =>
       AppLoaderHandle._(state: read<AppOverlayLoaderState>());
 }

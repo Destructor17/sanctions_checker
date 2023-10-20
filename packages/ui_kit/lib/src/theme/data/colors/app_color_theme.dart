@@ -1,8 +1,8 @@
-import 'package:sanctions_checker/ui_kit/theme/data/colors/background_color_data.dart';
-import 'package:sanctions_checker/ui_kit/theme/data/colors/error_color_data.dart';
-import 'package:sanctions_checker/ui_kit/theme/data/colors/neutral_color_data.dart';
-import 'package:sanctions_checker/ui_kit/theme/data/colors/primary_color_data.dart';
-import 'package:sanctions_checker/ui_kit/theme/data/colors/success_color_data.dart';
+import 'package:ui_kit/src/theme/data/colors/background_color_data.dart';
+import 'package:ui_kit/src/theme/data/colors/error_color_data.dart';
+import 'package:ui_kit/src/theme/data/colors/neutral_color_data.dart';
+import 'package:ui_kit/src/theme/data/colors/primary_color_data.dart';
+import 'package:ui_kit/src/theme/data/colors/success_color_data.dart';
 
 class AppColorScheme {
   const AppColorScheme({

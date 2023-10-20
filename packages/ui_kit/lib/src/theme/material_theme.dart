@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sanctions_checker/ui_kit/theme/data/colors/app_color_theme.dart';
+import 'package:ui_kit/src/theme/data/colors/app_color_theme.dart';
 
 class MaterialTheme {
   MaterialTheme._();

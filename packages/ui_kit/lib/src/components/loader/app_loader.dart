@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sanctions_checker/ui_kit/theme/app_theme.dart';
+import 'package:ui_kit/src/theme/app_theme.dart';
 
 class AppLoader extends StatelessWidget {
   const AppLoader({super.key});

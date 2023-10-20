@@ -4,8 +4,7 @@ import 'package:sanctions_checker/features/search/domain/services/search_service
 import 'package:sanctions_checker/features/search/presentation/bloc/search_bloc.f.dart';
 import 'package:sanctions_checker/features/search/presentation/search_result_view.dart';
 import 'package:sanctions_checker/l10n/context_extension.dart';
-import 'package:sanctions_checker/ui_kit/theme/app_theme.dart';
-import 'package:sanctions_checker/ui_kit/ui_kit.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({super.key});

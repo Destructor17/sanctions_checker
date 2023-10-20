@@ -5,8 +5,7 @@ import 'package:sanctions_checker/app/router/app_router.r.dart';
 import 'package:sanctions_checker/features/article/presentation/article_reference_view.dart';
 import 'package:sanctions_checker/features/document/presentation/bloc/document_bloc.f.dart';
 import 'package:sanctions_checker/l10n/context_extension.dart';
-import 'package:sanctions_checker/ui_kit/theme/app_theme.dart';
-import 'package:sanctions_checker/ui_kit/ui_kit.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 class DocumentView extends StatefulWidget {
   const DocumentView({

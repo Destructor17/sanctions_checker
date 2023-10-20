@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:sanctions_checker/app/router/app_router.r.dart';
 import 'package:sanctions_checker/features/article/domain/models/article_reference.f.dart';
-import 'package:sanctions_checker/ui_kit/theme/app_theme.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 class ArticleReferenceView extends StatelessWidget {
   const ArticleReferenceView({

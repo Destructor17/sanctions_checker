@@ -9,7 +9,7 @@ import 'package:sanctions_checker/features/settings/presentation/bloc/endpoint_b
 import 'package:sanctions_checker/l10n/context_extension.dart';
 import 'package:sanctions_checker/network/entity/document_dto.b.dart';
 import 'package:sanctions_checker/services/service_locator.dart';
-import 'package:sanctions_checker/ui_kit/ui_kit.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});

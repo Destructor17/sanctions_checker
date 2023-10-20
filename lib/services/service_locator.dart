@@ -4,8 +4,8 @@ import 'package:sanctions_checker/features/document/domain/services/document_sto
 import 'package:sanctions_checker/features/search/domain/services/search_service.dart';
 import 'package:sanctions_checker/features/settings/domain/services/endpoint_service.dart';
 import 'package:sanctions_checker/features/settings/domain/services/storage_service.dart';
-import 'package:sanctions_checker/services/dio_provider.dart';
-import 'package:sanctions_checker/services/netowrk_service.dart';
+import 'package:sanctions_checker/network/services/dio_provider.dart';
+import 'package:sanctions_checker/network/services/netowrk_service.dart';
 
 final GetIt sl = GetIt.instance;
 
