@@ -26,10 +26,11 @@ Future<void> slInit() async {
         endpointService: sl.get<EndpointService>(),
       ),
     )
-    ..registerFactory<DocumentStorageService>(
+    ..registerLazySingleton<DocumentStorageService>(
       () => DocumentStorageServiceImpl(
         storageService: sl.get<StorageService>(),
       ),
+      dispose: (param) => param.close(),
     )
     ..registerFactory<ArticleService>(
       () => ArticleServiceImpl(

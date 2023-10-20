@@ -5,6 +5,7 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sanctions_checker/features/article/domain/models/article.f.dart';
 import 'package:sanctions_checker/features/article/domain/services/article_service.dart';
+import 'package:sanctions_checker/features/document/domain/services/document_storage_service.dart';
 import 'package:sanctions_checker/services/service_locator.dart';
 
 part 'document_bloc.f.freezed.dart';
@@ -18,6 +19,18 @@ class DocumentBloc extends Bloc<DocumentEvent, DocumentState> {
       transformer: restartable(),
     );
     add(const DocumentEvent.requested());
+    documentUpdatedSubscription =
+        sl.get<DocumentStorageService>().documentUpdatedStream.listen((_) {
+      add(const DocumentEvent.requested());
+    });
+  }
+
+  StreamSubscription<dynamic>? documentUpdatedSubscription;
+
+  @override
+  Future<void> close() async {
+    await documentUpdatedSubscription?.cancel();
+    return super.close();
   }
 
   final List<String> path;

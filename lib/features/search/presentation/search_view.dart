@@ -88,6 +88,17 @@ class SearchViewState extends State<SearchView> {
                           ),
                         ),
                       )
+                    else if (state is SearchStateError)
+                      SliverFillRemaining(
+                        child: Center(
+                          child: Text(
+                            context.loc.searchError,
+                            style: context.typography.bodyMedium.copyWith(
+                              color: context.colors.neutral.neutral,
+                            ),
+                          ),
+                        ),
+                      )
                     else if (state is SearchStateLoading)
                       const SliverFillRemaining(
                         child: AppLoader(),

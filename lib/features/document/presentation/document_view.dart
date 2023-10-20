@@ -73,7 +73,14 @@ class DocumentViewState extends State<DocumentView> {
           );
           title = state.article.title;
         } else if (state is DocumentStateError) {
-          body = Center(child: Text(context.loc.articleLoadingError));
+          body = Center(
+            child: Text(
+              context.loc.articleLoadingError,
+              style: context.typography.bodyMedium.copyWith(
+                color: context.colors.neutral.neutral,
+              ),
+            ),
+          );
           title = '';
         } else {
           body = const Center(child: AppLoader());
@@ -82,12 +89,17 @@ class DocumentViewState extends State<DocumentView> {
 
         return Scaffold(
           appBar: AppBar(
+            iconTheme: IconThemeData(
+              color: context.colors.neutral.neutral,
+            ),
             title: Text(
               title,
               style: context.typography.bodyMedium.copyWith(
                 color: context.colors.neutral.neutral,
               ),
+              maxLines: 2,
             ),
+            centerTitle: true,
             backgroundColor: context.colors.background.onPrimary,
           ),
           body: body,

@@ -31,12 +31,12 @@ class AppRouter extends _$AppRouter {
             ),
           ],
         ),
-        RedirectRoute(path: '*', redirectTo: '/tabs/search'),
+        RedirectRoute(path: '*', redirectTo: '/search'),
       ];
 }
 
 class RoutePaths {
-  static const String tabs = '/tabs';
+  static const String tabs = '/';
   static const String settings = 'settings';
   static const String search = 'search';
   static const String document = 'document';
