@@ -9,7 +9,6 @@ typedef AdaptiveThemeBuilder = Widget Function(
 
 class AdaptiveTheme extends StatefulWidget {
   const AdaptiveTheme({
-    // required this.child,
     required this.builder,
     super.key,
   });
@@ -25,7 +24,13 @@ class _AdaptiveThemeState extends State<AdaptiveTheme> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    theme = AppThemeData.light();
+    switch (MediaQuery.of(context).platformBrightness) {
+      case Brightness.dark:
+        theme = AppThemeData.dark();
+        break;
+      default:
+        theme = AppThemeData.light();
+    }
   }
 
   @override
@@ -35,9 +40,4 @@ class _AdaptiveThemeState extends State<AdaptiveTheme> {
       child: widget.builder(context, theme),
     );
   }
-}
-
-enum AppThemeColorMode {
-  light,
-  dark,
 }
