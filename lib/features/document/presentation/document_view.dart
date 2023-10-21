@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sanctions_checker/app/router/app_router.r.dart';
-import 'package:sanctions_checker/features/article/presentation/article_reference_view.dart';
+import 'package:sanctions_checker/features/article/presentation/article_view.dart';
 import 'package:sanctions_checker/features/document/presentation/bloc/document_bloc.f.dart';
 import 'package:sanctions_checker/l10n/context_extension.dart';
 import 'package:ui_kit/ui_kit.dart';
@@ -46,30 +46,11 @@ class DocumentViewState extends State<DocumentView> {
         final Widget body;
         final String title;
         if (state is DocumentStateResult) {
-          body = SafeArea(
-            child: ListView(
-              children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.all(context.sizes.margin),
-                      child: Text(
-                        state.article.body,
-                        style: context.typography.bodyMedium.copyWith(
-                          color: context.colors.neutral.neutral,
-                        ),
-                      ),
-                    ),
-                  ] +
-                  state.article.sections.map(
-                    (section) {
-                      return ArticleReferenceView(
-                        articleReference: section,
-                        onTap: () {
-                          navigateToPath(section.path);
-                        },
-                      );
-                    },
-                  ).toList(),
-            ),
+          body = ArticleView(
+            article: state.article,
+            onSectionTap: (section) {
+              navigateToPath(section.path);
+            },
           );
           title = state.article.title;
         } else if (state is DocumentStateError) {

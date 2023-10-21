@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sanctions_checker/features/document/domain/services/document_storage_service.dart';
 import 'package:sanctions_checker/features/search/domain/services/search_service.dart';
 import 'package:sanctions_checker/features/search/presentation/bloc/search_bloc.f.dart';
 import 'package:sanctions_checker/features/search/presentation/search_result_view.dart';
 import 'package:sanctions_checker/l10n/context_extension.dart';
+import 'package:sanctions_checker/services/service_locator.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 class SearchView extends StatefulWidget {
@@ -24,10 +28,17 @@ class SearchViewState extends State<SearchView> {
     controller.addListener(search);
     bloc.add(SearchEvent.requestedSearch(controller.text, searchType));
     super.initState();
+    documentUpdatedSubscription = sl
+        .get<DocumentStorageService>()
+        .documentUpdatedStream
+        .listen((_) => search());
   }
+
+  StreamSubscription<dynamic>? documentUpdatedSubscription;
 
   @override
   void dispose() {
+    documentUpdatedSubscription?.cancel();
     controller.removeListener(search);
     super.dispose();
   }

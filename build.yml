@@ -5,6 +5,6 @@ targets:
         - lib/**.f.dart # freezed
         - lib/**.r.dart # auto_route
         - lib/**.b.dart # built_value
-        - lib/**.m.dart # built_value
+        - test/**.m.dart # mockito
         - $package$
         - lib/$lib$

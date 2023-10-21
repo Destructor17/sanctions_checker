@@ -6,7 +6,7 @@
     "fetchDocumentButton": "Обновить документ",
     "searchTypeText": "Поиск в тексте",
     "searchTypeCode": "Поиск по коду",
-    "searchError": "An error occurd",
+    "searchError": "Произошла ошибка",
     "noSearchResult": "Ничего не найдено",
     "articleLoadingError": "Не удалось загрузить"
 }

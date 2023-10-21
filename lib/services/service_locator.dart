@@ -42,13 +42,4 @@ Future<void> slInit() async {
         documentStorageService: sl.get<DocumentStorageService>(),
       ),
     );
-
-  _initRepositories();
-  _initServices();
 }
-
-Future<void> diDispose() => sl.reset();
-
-void _initRepositories() {}
-
-void _initServices() {}

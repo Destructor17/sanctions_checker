@@ -15,17 +15,15 @@ class ItemGroupView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiSliver(
-      children: itemGroup.articleReferences
-              .map<Widget>(
-                (articleReference) =>
-                    ArticleReferenceView(articleReference: articleReference),
-              )
-              .toList() +
-          itemGroup.items
-              .map<Widget>(
-                (item) => ItemView(item: item),
-              )
-              .toList(),
+      children: [
+        ...itemGroup.articleReferences.map<Widget>(
+          (articleReference) =>
+              ArticleReferenceView(articleReference: articleReference),
+        ),
+        ...itemGroup.items.map<Widget>(
+          (item) => ItemView(item: item),
+        )
+      ],
     );
   }
 }

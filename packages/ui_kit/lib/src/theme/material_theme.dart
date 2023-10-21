@@ -21,8 +21,6 @@ class MaterialTheme {
   }) {
     final backgroundColor = colorScheme.background.background;
 
-    final isBrightnessLight = brightness == Brightness.light;
-
     final buttonTheme = ButtonStyle(
       padding: const MaterialStatePropertyAll(EdgeInsets.zero),
       elevation: MaterialStateProperty.all(0),
@@ -44,15 +42,12 @@ class MaterialTheme {
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: backgroundColor,
           systemNavigationBarColor: backgroundColor,
-          systemNavigationBarIconBrightness:
-              isBrightnessLight ? Brightness.dark : Brightness.light,
-          statusBarIconBrightness:
-              isBrightnessLight ? Brightness.dark : Brightness.light,
-          statusBarBrightness:
-              isBrightnessLight ? Brightness.light : Brightness.dark,
+          systemNavigationBarIconBrightness: brightness,
+          statusBarIconBrightness: brightness,
+          statusBarBrightness: brightness,
         ),
         backgroundColor: backgroundColor,
-        centerTitle: false,
+        centerTitle: true,
         foregroundColor: backgroundColor,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(

@@ -14,10 +14,11 @@ class SearchResultView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiSliver(
-      children: searchResult.itemGroups
-              .map<Widget>((itemGroup) => ItemGroupView(itemGroup: itemGroup))
-              .toList() +
-          [],
+      children: [
+        ...searchResult.itemGroups.map<Widget>(
+          (itemGroup) => ItemGroupView(itemGroup: itemGroup),
+        ),
+      ],
     );
   }
 }
