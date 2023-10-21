@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:sanctions_checker/features/article/domain/services/article_service.dart';
 import 'package:sanctions_checker/features/document/domain/services/document_storage_service.dart';
 import 'package:sanctions_checker/features/search/domain/services/search_service.dart';
+import 'package:sanctions_checker/features/settings/domain/services/document_picker_service.dart';
 import 'package:sanctions_checker/features/settings/domain/services/endpoint_service.dart';
 import 'package:sanctions_checker/features/settings/domain/services/storage_service.dart';
 import 'package:sanctions_checker/network/services/dio_provider.dart';
@@ -41,5 +42,8 @@ Future<void> slInit() async {
       () => SearchServiceImpl(
         documentStorageService: sl.get<DocumentStorageService>(),
       ),
+    )
+    ..registerFactory<DocumentPickerService>(
+      DocumentPickerServiceImpl.new,
     );
 }

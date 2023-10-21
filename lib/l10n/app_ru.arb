@@ -4,6 +4,7 @@
     "searchTitle": "Поиск",
     "documentTitle": "Документ",
     "fetchDocumentButton": "Обновить документ",
+    "pickDocumentButton": "Выбрать документ из файлов",
     "searchTypeText": "Поиск в тексте",
     "searchTypeCode": "Поиск по коду",
     "searchError": "Произошла ошибка",

@@ -89,6 +89,12 @@ class SettingsViewState extends State<SettingsView> {
                         text: context.loc.fetchDocumentButton,
                         isEnabled: endpointState is EndpointStateValid,
                       ),
+                      AppButton(
+                        onPressed: () async {
+                          documentFetchBloc.add(const DocumentFetchEvent.pick());
+                        },
+                        text: context.loc.pickDocumentButton,
+                      ),
                       if (kDebugMode)
                         AppButton(
                           onPressed: () async {

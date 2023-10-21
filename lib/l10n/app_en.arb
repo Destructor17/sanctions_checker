@@ -4,6 +4,7 @@
   "searchTitle": "Search",
   "documentTitle": "Document",
   "fetchDocumentButton": "Update document",
+  "pickDocumentButton": "Pick document from files",
   "searchTypeText": "Text search",
   "searchTypeCode": "Code search",
   "searchError": "An error occurd",

@@ -19,32 +19,38 @@ mixin _$DocumentFetchEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() requested,
+    required TResult Function() pick,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requested,
+    TResult? Function()? pick,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requested,
+    TResult Function()? pick,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(DocumentFetchEventRequested value) requested,
+    required TResult Function(DocumentFetchEventPick value) pick,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(DocumentFetchEventRequested value)? requested,
+    TResult? Function(DocumentFetchEventPick value)? pick,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(DocumentFetchEventRequested value)? requested,
+    TResult Function(DocumentFetchEventPick value)? pick,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -111,6 +117,7 @@ class _$DocumentFetchEventRequestedImpl implements DocumentFetchEventRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() requested,
+    required TResult Function() pick,
   }) {
     return requested();
   }
@@ -119,6 +126,7 @@ class _$DocumentFetchEventRequestedImpl implements DocumentFetchEventRequested {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requested,
+    TResult? Function()? pick,
   }) {
     return requested?.call();
   }
@@ -127,6 +135,7 @@ class _$DocumentFetchEventRequestedImpl implements DocumentFetchEventRequested {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requested,
+    TResult Function()? pick,
     required TResult orElse(),
   }) {
     if (requested != null) {
@@ -139,6 +148,7 @@ class _$DocumentFetchEventRequestedImpl implements DocumentFetchEventRequested {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(DocumentFetchEventRequested value) requested,
+    required TResult Function(DocumentFetchEventPick value) pick,
   }) {
     return requested(this);
   }
@@ -147,6 +157,7 @@ class _$DocumentFetchEventRequestedImpl implements DocumentFetchEventRequested {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(DocumentFetchEventRequested value)? requested,
+    TResult? Function(DocumentFetchEventPick value)? pick,
   }) {
     return requested?.call(this);
   }
@@ -155,6 +166,7 @@ class _$DocumentFetchEventRequestedImpl implements DocumentFetchEventRequested {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(DocumentFetchEventRequested value)? requested,
+    TResult Function(DocumentFetchEventPick value)? pick,
     required TResult orElse(),
   }) {
     if (requested != null) {
@@ -167,6 +179,111 @@ class _$DocumentFetchEventRequestedImpl implements DocumentFetchEventRequested {
 abstract class DocumentFetchEventRequested implements DocumentFetchEvent {
   const factory DocumentFetchEventRequested() =
       _$DocumentFetchEventRequestedImpl;
+}
+
+/// @nodoc
+abstract class _$$DocumentFetchEventPickImplCopyWith<$Res> {
+  factory _$$DocumentFetchEventPickImplCopyWith(
+          _$DocumentFetchEventPickImpl value,
+          $Res Function(_$DocumentFetchEventPickImpl) then) =
+      __$$DocumentFetchEventPickImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DocumentFetchEventPickImplCopyWithImpl<$Res>
+    extends _$DocumentFetchEventCopyWithImpl<$Res, _$DocumentFetchEventPickImpl>
+    implements _$$DocumentFetchEventPickImplCopyWith<$Res> {
+  __$$DocumentFetchEventPickImplCopyWithImpl(
+      _$DocumentFetchEventPickImpl _value,
+      $Res Function(_$DocumentFetchEventPickImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DocumentFetchEventPickImpl implements DocumentFetchEventPick {
+  const _$DocumentFetchEventPickImpl();
+
+  @override
+  String toString() {
+    return 'DocumentFetchEvent.pick()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DocumentFetchEventPickImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() requested,
+    required TResult Function() pick,
+  }) {
+    return pick();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? requested,
+    TResult? Function()? pick,
+  }) {
+    return pick?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? requested,
+    TResult Function()? pick,
+    required TResult orElse(),
+  }) {
+    if (pick != null) {
+      return pick();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DocumentFetchEventRequested value) requested,
+    required TResult Function(DocumentFetchEventPick value) pick,
+  }) {
+    return pick(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DocumentFetchEventRequested value)? requested,
+    TResult? Function(DocumentFetchEventPick value)? pick,
+  }) {
+    return pick?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DocumentFetchEventRequested value)? requested,
+    TResult Function(DocumentFetchEventPick value)? pick,
+    required TResult orElse(),
+  }) {
+    if (pick != null) {
+      return pick(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DocumentFetchEventPick implements DocumentFetchEvent {
+  const factory DocumentFetchEventPick() = _$DocumentFetchEventPickImpl;
 }
 
 /// @nodoc

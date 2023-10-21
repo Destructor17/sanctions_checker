@@ -1,3 +1,5 @@
+// ignore_for_file: void_checks
+
 import 'package:either_dart/either.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -44,10 +46,7 @@ Future<void> slInitMocks() async {
   mockedArticleService = MockArticleService();
   mockedSearchService = MockSearchService();
 
-  // ignore: void_checks
   provideDummy<Either<void, DocumentDTO>>(const Left(()));
-
-  // ignore: void_checks
   provideDummy<Either<void, SearchResult>>(const Left(()));
   provideDummy<Either<void, Article>>(const Left(()));
 
