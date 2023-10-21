@@ -1,6 +1,7 @@
 import 'package:either_dart/either.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:sanctions_checker/features/article/domain/models/article.f.dart';
 import 'package:sanctions_checker/features/article/domain/services/article_service.dart';
 import 'package:sanctions_checker/features/document/domain/services/document_storage_service.dart';
 import 'package:sanctions_checker/features/search/domain/models/search_result.f.dart';
@@ -48,6 +49,7 @@ Future<void> slInitMocks() async {
 
   // ignore: void_checks
   provideDummy<Either<void, SearchResult>>(const Left(()));
+  provideDummy<Either<void, Article>>(const Left(()));
 
   sl
     ..registerSingleton<DioProvider>(mockedDioProvider)

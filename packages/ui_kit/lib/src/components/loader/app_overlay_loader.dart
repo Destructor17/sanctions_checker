@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ui_kit/src/components/loader/app_loader.dart';
-import 'package:ui_kit/src/components/loader/hacked_stack.dart';
 import 'package:ui_kit/src/theme/app_theme.dart';
 
 class AppOverlayLoader extends StatefulWidget {
@@ -26,10 +25,23 @@ class AppOverlayLoaderState extends State<AppOverlayLoader>
 
   Set<Type> handles = {};
 
+  bool isLoaderVisible = false;
+
+  void updateLoaderVisibility() {
+    final targetLoaderVisibility = handles.isNotEmpty;
+    if (targetLoaderVisibility != isLoaderVisible) {
+      setState(() {
+        isLoaderVisible = targetLoaderVisibility;
+      });
+    }
+  }
+
   void startLoading(Type handleType) {
     if (handles.isEmpty) {
-      animationController.forward();
-      WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+      animationController.forward().then((_) => updateLoaderVisibility());
+      WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
+            isLoaderVisible = true;
+          }));
     }
     handles.add(handleType);
   }
@@ -37,29 +49,35 @@ class AppOverlayLoaderState extends State<AppOverlayLoader>
   void stopLoading(Type handleType) {
     handles.remove(handleType);
     if (handles.isEmpty) {
-      animationController.reverse();
+      animationController.reverse().then((_) => updateLoaderVisibility());
       WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (!isLoaderVisible) {
+      return Provider<AppOverlayLoaderState>.value(
+        value: this,
+        child: widget.child,
+      );
+    }
     final animation = CurvedAnimation(
       parent: animationController,
       curve: Curves.linear,
     );
-    return HackedStack(
+    return Stack(
       fit: StackFit.expand,
       children: [
         AbsorbPointer(
-          absorbing: handles.isNotEmpty,
+          absorbing: true,
           child: Provider<AppOverlayLoaderState>.value(
             value: this,
             child: widget.child,
           ),
         ),
         AbsorbPointer(
-          absorbing: false,
+          absorbing: true,
           child: FadeTransition(
             opacity: animation,
             alwaysIncludeSemantics: true,

@@ -5,10 +5,7 @@
             "name": "Flutter: Run all Tests",
             "type": "dart",
             "request": "launch",
-            "program": "./test/",
-            "args": [
-                "--update-goldens",
-            ],
+            "program": "./test/"
         },
         {
             "name": "Flutter",
@@ -17,7 +14,7 @@
             "program": "lib/main.dart"
         },
         {
-            "name": "Golden",
+            "name": "Update Golden",
             "request": "launch",
             "type": "dart",
             "codeLens": {
